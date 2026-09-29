@@ -58,7 +58,7 @@ The current path is in the title row.
 | R             | list again                                               |
 | P             | send a file from a disk to this directory                |
 | D             | choose where downloads go                                |
-| F / B         | cycle the text / background color                        |
+| MEGA-F / MEGA-B | cycle the text / background color                      |
 | HELP          | end the session, back to the Host prompt                 |
 | RUN/STOP      | up one directory; at the root, ends the session          |
 
