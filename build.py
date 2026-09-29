@@ -146,7 +146,12 @@ def emit_payload(gen, tramp, image, term):
     (gen / "ck_payload.c").write_text(f'#include "ck_payload.h"\nconst unsigned char ck_tramp_bin[CK_TRAMP_SIZE] = {{ {body} }};\n')
 
 
-HIGH_OBJS = ("m65_cbmdos.c", "m65_f011.c", "hosts.c", "m65_hyppo.c")   # named in src/sftp.ld: the window under the KERNAL, compiled apart (irc 5.17)
+# Named in src/sftp.ld: the window under the KERNAL, compiled apart
+# (irc 5.17). NOTHING here may run before ck_boot has loaded the image:
+# the disk layer was here first and the boot broke at $E720, since the
+# loader of HIGH is the disk layer (5.3). Everything named is idle
+# until a session: the channel, the known hosts, the listing, Hyppo.
+HIGH_OBJS = ("channel.c", "hosts.c", "dirlist.c", "m65_hyppo.c")
 RAM_LEN = 2 + 0xAFFF                              # the PRG's header and its whole region; the HIGH image follows
 
 

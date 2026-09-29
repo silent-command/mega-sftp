@@ -19,6 +19,7 @@ unsigned char xfer_drive;
 char xfer_image[32];
 
 #define answer ((char *)0x15D8)      /* 32 bytes, lowmap.h */
+#define ANSWER_CAP 32                /* never sizeof on a fixed address */
 static char text[81];
 static unsigned char buf[256];      /* an upload's block: cbmdos_read_next fills at most 254 */
 static char from_s[2] = "8";        /* the upload's source drive, remembered */
@@ -53,7 +54,7 @@ unsigned char xfer_choose_drive(void)
   ui_line(ROW_PROMPT, "Save to: 8 or 9 for that unit, or the name of a .D81 on the SD card to attach to unit 9", 0);
   if (xfer_drive && xfer_image[0]) strcpy(answer, xfer_image);
   else strcpy(answer, xfer_drive ? "9" : "8");
-  if (!ui_read_line(UI_ROW_STATUS, "Drive: ", answer, sizeof answer - 1, 0) || !answer[0]) {
+  if (!ui_read_line(UI_ROW_STATUS, "Drive: ", answer, ANSWER_CAP - 1, 0) || !answer[0]) {
     ui_status("drive unchanged", 0);
     return 0;
   }
@@ -117,13 +118,15 @@ static unsigned long got_bytes;
 
 static void save_data(const uint8_t *p, uint16_t n)
 {
-  uint16_t i;
+  /* a pointer walk, not a 16-bit counter: the loop miscompile of ssh
+   * 5.6 hit the counted form here (tools/orphan_rmw.py caught it) */
+  const uint8_t *end = p + n;
   if (disk_err) return;
-  for (i = 0; i < n; i++) {
-    unsigned char e = cbmdos_put(p[i]);
+  got_bytes += n;
+  while (p < end) {
+    unsigned char e = cbmdos_put(*p++);
     if (e != CBMDOS_OK) { disk_err = e; return; }
   }
-  got_bytes += n;
 }
 
 unsigned char xfer_get(const struct dl_entry *e, const char *remote)
@@ -237,7 +240,7 @@ unsigned char xfer_put(const char *dir)
     strcpy(remote, dir);
     base = (unsigned char)strlen(remote);
     if (base && remote[base - 1] != '/') { remote[base++] = '/'; remote[base] = 0; }
-    if (base + 17 > sizeof remote) { ui_status("the directory's path is too long", 0); return 0; }
+    if (base + 17 > SFTP_PATH_MAX + 1) { ui_status("the directory's path is too long", 0); return 0; }   /* never sizeof: remote is a fixed address (lowmap.h) */
     strcpy(remote + base, local);
     ui_line(ROW_PROMPT, "The name to give it on the server:", 0);
     if (!ui_read_line(UI_ROW_STATUS, "Send as: ", remote + base, 16, 0) || !remote[base]) { ui_status("cancelled", 0); return 0; }

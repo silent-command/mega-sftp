@@ -30,18 +30,18 @@ SECTIONS {
     /* BASIC program that jumps to _start. */
     .basic_header : { *(.basic_header) }
 
-    /* the call-light modules: the disk layer, the known hosts and the
-     * hypervisor services (build.py HIGH_OBJS) */
+    /* modules idle until a session, so nothing here runs before
+     * ck_boot has loaded the image (build.py HIGH_OBJS says why) */
     .text.hi : {
-        *m65_cbmdos.o(.text .text.* .rodata .rodata.*)
-        *m65_f011.o(.text .text.* .rodata .rodata.*)
+        *channel.o(.text .text.* .rodata .rodata.*)
         *hosts.o(.text .text.* .rodata .rodata.*)
+        *dirlist.o(.text .text.* .rodata .rodata.*)
         *m65_hyppo.o(.text .text.* .rodata .rodata.*)
     } > hi
     .bss.hi (NOLOAD) : {
         __hi_bss_start = .;
-        *m65_cbmdos.o(.bss .bss.* .data .data.*)
-        *m65_f011.o(.bss .bss.*) *hosts.o(.bss .bss.*) *m65_hyppo.o(.bss .bss.*)
+        *channel.o(.bss .bss.* .data .data.*)
+        *hosts.o(.bss .bss.*) *dirlist.o(.bss .bss.*) *m65_hyppo.o(.bss .bss.*)
         __hi_bss_end = .;
     } > hi
 
