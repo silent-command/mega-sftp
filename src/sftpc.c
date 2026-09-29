@@ -128,7 +128,7 @@ static void draw_title(void)
 
 static void draw_keys(void)
 {
-  ui_line(UI_ROW_KEYS, "RETURN opens or gets   U up   P put   D drive   R relist   F/B color   HELP host", 0);
+  ui_line(UI_ROW_KEYS, "RETURN opens or gets   U up   P put   D drive   R relist   MEGA-F/B color   HELP host", 0);
 }
 
 static void draw_entry(unsigned char idx, unsigned char row)
@@ -350,11 +350,13 @@ static unsigned char browse(void)
       else draw_page();                             /* the picker used the listing rows */
       break;
     case 'd': case 'D': xfer_choose_drive(); draw_info(); break;
-    case 'f': case 'F':
+    case 'f': case 'F':                             /* MEGA held, as every client binds the colors (2026-09-29) */
+      if (!(mods & MOD_MEGA)) break;
       m65_screen_cycle_text_colour();
       draw_page();
       break;
     case 'b': case 'B':
+      if (!(mods & MOD_MEGA)) break;
       m65_screen_cycle_background();
       break;
     case KEY_HELP: case 'h': case 'H':
