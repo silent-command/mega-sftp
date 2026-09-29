@@ -208,7 +208,7 @@ def build_client():
     empty = BUILD / "empty.seq"                     # an empty IDENTITY ships on the disk (ssh 5.26)
     empty.write_bytes(b"")
     run([c1541, "-format", "sftp,sf", "d81", d81, "-write", prg, "sftp", "-write", BIN / "meganet", "meganet",
-         "-write", BIN / "sshcrypto", "sshcrypto", "-write", BIN / "term", "term", "-write", high, "high",
+         "-write", BIN / "sshcrypto", "sshcrypto", "-write", BIN / "term", "term", "-write", high, "sftphigh",   # not "high": the IRC client's second image has that name on the shared disk
          "-write", empty, "identity,s"], stdout=subprocess.DEVNULL)
     run([c1541, "-attach", d81, "-dir"])
     return 0

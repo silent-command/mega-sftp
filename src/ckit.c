@@ -62,7 +62,7 @@ unsigned char ck_boot(const char **err)
   /* the client's own second image: the modules under the KERNAL
    * (src/sftp.ld). Loaded here because the loader it uses lives in the
    * first image; anything in HIGH called before this hangs (irc 5.17). */
-  if (cbmdos_load("HIGH", boot_drive, 0x0E000UL, 0x1F00) == 0) { *err = "HIGH not found on the boot disk"; return 0; }
+  if (cbmdos_load("SFTPHIGH", boot_drive, 0x0E000UL, 0x1F00) == 0) { *err = "SFTPHIGH not found on the boot disk"; return 0; }
   call(E_INIT, 0, 0, 0);
   *err = 0;
   return 1;
