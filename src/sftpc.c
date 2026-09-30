@@ -22,7 +22,7 @@
 #include "dirlist.h"
 #include "xfer.h"
 
-#define SFTPC_VERSION "0.1.2"
+#define SFTPC_VERSION "0.1.3"
 
 #define ROW_FIRST 2
 #define ROWS_PER_PAGE ((unsigned char)(scr_rows - 5))
