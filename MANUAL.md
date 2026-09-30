@@ -92,8 +92,8 @@ crypto bank is built in mega-ssh and shared byte for byte.
     python3 build.py            the client and bin/SFTP.D81
     python3 build.py host       the same protocol code as a command-line
                                 client on this machine, for testing
-    python3 tools/deploy.py     the disk onto the card's net-tools folder,
-                                keeping identity and knownhosts
+    python3 tools/deploy.py     the disk onto the card, keeping the
+                                identity and known hosts already there
     python3 tools/sftp_test_server.py   a local SFTP server to test against
 
 ## License
