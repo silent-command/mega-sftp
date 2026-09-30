@@ -51,7 +51,7 @@ unsigned char xfer_choose_drive(void)
 {
   unsigned char how;
 
-  ui_line(ROW_PROMPT, "Save to: 8 or 9 for that unit, or the name of a .D81 on the SD card to attach to unit 9", 0);
+  ui_line(ROW_PROMPT, "Save to: 8 or 9 for that unit, or a .D81 on the SD card to attach as unit 9", 0);
   if (xfer_drive && xfer_image[0]) strcpy(answer, xfer_image);
   else strcpy(answer, xfer_drive ? "9" : "8");
   if (!ui_read_line(UI_ROW_STATUS, "Drive: ", answer, ANSWER_CAP - 1, 0) || !answer[0]) {

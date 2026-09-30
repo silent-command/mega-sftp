@@ -128,7 +128,7 @@ static void draw_title(void)
 
 static void draw_keys(void)
 {
-  ui_line(UI_ROW_KEYS, "RETURN opens or gets   U up   P put   D drive   R relist   MEGA-F/B color   HELP host", 0);
+  ui_line(UI_ROW_KEYS, "RETURN open/get   U up   P put   D drive   R relist   MEGA-F/B color   HELP host", 0);
 }
 
 static void draw_entry(unsigned char idx, unsigned char row)
