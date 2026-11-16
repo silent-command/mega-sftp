@@ -42,6 +42,7 @@ SECTIONS {
         __hi_bss_start = .;
         *channel.o(.bss .bss.* .data .data.*)
         *hosts.o(.bss .bss.*) *dirlist.o(.bss .bss.*) *m65_hyppo.o(.bss .bss.*)
+        *rnd.o(.bss .bss.*)     /* its code stays low: only its pool is here (build.py HIGH_OBJS) */
         __hi_bss_end = .;
     } > hi
 

@@ -151,7 +151,13 @@ def emit_payload(gen, tramp, image, term):
 # the disk layer was here first and the boot broke at $E720, since the
 # loader of HIGH is the disk layer (5.3). Everything named is idle
 # until a session: the channel, the known hosts, the listing, Hyppo.
-HIGH_OBJS = ("channel.c", "hosts.c", "dirlist.c", "m65_hyppo.c")
+# rnd.c is compiled apart too, but only its pool and buffers go there
+# (src/sftp.ld): every call of it goes to the crypto bank, so none comes
+# before ck_boot, and rnd_init sets all of it, since nothing clears this
+# window. That gave back the bytes the hardware RNG (rnd.c) took from
+# the low region, which had put the stack under its 1 KB floor; its code
+# did not fit up there.
+HIGH_OBJS = ("channel.c", "hosts.c", "dirlist.c", "m65_hyppo.c", "rnd.c")
 RAM_LEN = 2 + 0xAFFF                              # the PRG's header and its whole region; the HIGH image follows
 
 

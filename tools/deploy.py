@@ -5,7 +5,7 @@ that is the user's account on a key-authenticated server), SSHAUTH (the
 authentication default) and KNOWNHOSTS. Replacing the disk image
 outright loses them.
 
-    python3 tools/deploy.py [--port /dev/cu.usbserial-23201] [image.d81]
+    python3 tools/deploy.py [--port /dev/cu.usbserial-21301] [image.d81]
 
 Needs m65 and mega65_ftp from mega65-tools on the PATH (with or without
 the .osx suffix) and c1541 from VICE. The machine is reset first, as
@@ -35,7 +35,7 @@ def run(args, check=True):
 
 def main():
     args = sys.argv[1:]
-    port = os.environ.get("MEGA65_PORT", "/dev/cu.usbserial-23201")
+    port = os.environ.get("MEGA65_PORT", "/dev/cu.usbserial-21301")
     if "--port" in args:
         i = args.index("--port"); port = args[i + 1]; del args[i:i + 2]
     image = Path(args[0]) if args else ROOT / "bin" / "SFTP.D81"

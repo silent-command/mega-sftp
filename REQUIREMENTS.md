@@ -86,3 +86,14 @@ the download is slower, minutes for the same file, mostly the
 one-outstanding-request round trips plus the byte-at-a-time disk
 write. save_data hit the ssh 5.6 loop miscompile and is a pointer walk
 now; build.py's checker caught it before the machine did.
+
+### 5.6 The new bank, and the randomness's buffers in the high window (2026-11-16)
+
+The SSH client's 5.32 bank. The hardware RNG read and the small-order
+check took the low region to 1,009 bytes of stack, under the floor;
+`rnd.c` is compiled apart now and its pool and buffers (69 bytes) sit
+in `.bss.hi`. Nothing clears that window, and `rnd_init`, after
+`ck_boot`, sets all of it. 1,056 bytes of stack. On the machine from
+the Net-Tools menu: password login, the 100 KB file down in 11.5 s and
+back up in 34 s, both byte-identical on the Mac (5.5: about 56 s up,
+minutes down).
