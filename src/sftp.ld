@@ -43,6 +43,7 @@ SECTIONS {
         *channel.o(.bss .bss.* .data .data.*)
         *hosts.o(.bss .bss.*) *dirlist.o(.bss .bss.*) *m65_hyppo.o(.bss .bss.*)
         *rnd.o(.bss .bss.*)     /* its code stays low: only its pool is here (build.py HIGH_OBJS) */
+        *(.bss.hi.*)            /* named into the window from the LTO objects: xfer.c's upload block */
         __hi_bss_end = .;
     } > hi
 

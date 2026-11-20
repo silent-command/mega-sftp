@@ -21,7 +21,12 @@ char xfer_image[32];
 #define answer ((char *)0x15D8)      /* 32 bytes, lowmap.h */
 #define ANSWER_CAP 32                /* never sizeof on a fixed address */
 static char text[81];
-static unsigned char buf[256];      /* an upload's block: cbmdos_read_next fills at most 254 */
+/* an upload's block: cbmdos_read_next fills at most 254. In the high
+ * window (sftp.ld's .bss.hi.*), filled before every use and used only in
+ * a session, after ck_boot: the 256 bytes the menu's warm network start
+ * took from the low region's stack (mega-net 5.23). ch_send copies it
+ * out by CPU, which sees RAM there. */
+static unsigned char buf[256] __attribute__((section(".bss.hi.xfer")));
 static char from_s[2] = "8";        /* the upload's source drive, remembered */
 
 static const char *cbmdos_text(unsigned char err)

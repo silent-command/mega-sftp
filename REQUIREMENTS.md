@@ -97,3 +97,20 @@ in `.bss.hi`. Nothing clears that window, and `rnd_init`, after
 the Net-Tools menu: password login, the 100 KB file down in 11.5 s and
 back up in 34 s, both byte-identical on the Mac (5.5: about 56 s up,
 minutes down).
+
+### 5.7 The upload block in the high window (2026-11-20)
+
+The Net-Tools collection's warm network start (mega-net 5.23) cost the
+low region 129 bytes, which put the soft stack at 927, under its 1 KB
+floor. `xfer.c`'s 256-byte upload block went into the high window as
+`.bss.hi.xfer` (`sftp.ld` now takes `*(.bss.hi.*)` from the LTO
+objects): it is filled by `cbmdos_read_next` before every use, only in
+a session, and `ch_send` copies it out by CPU, which sees RAM there.
+1,183 bytes of stack; the window's `.bss` ends at `$FD4D`, under the
+vector stub at `$FF00`. Launched from the menu on the machine, it had
+its lease 2.1 s after the key, logged in to `tools/sftp_test_server.py`
+on the Mac by password, fetched a 20,000-byte random file to a second
+disk on unit 9 and sent it back under a new name: byte-identical on
+the Mac (SHA-256), so the upload block works from the window. It quit
+back to the menu.
+
