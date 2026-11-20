@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* The host's stand-in for mega-net's ABI: TCP sockets by index over BSD
  * sockets, non-blocking, with the states and flags the clients read. */
 #ifndef HOST_MEGANET_H

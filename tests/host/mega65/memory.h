@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* The host's stand-in for mega65-libc's memory.h: PEEK of $D7FA is a
  * 50 Hz frame counter from the clock, far memory is an array covering
  * banks 0-5, and every other register reads as noise. For the host

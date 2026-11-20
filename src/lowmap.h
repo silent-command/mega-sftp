@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* This client's fixed buffers in bank 0's low RAM, below the program:
  * the family's map (mega-net PLATFORM.md) with this client's uses. All
  * reached by absolute address; sizeof is wrong on every one of them.

@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* The current directory's listing, in bank 1 at $1C000-$1DFFF, the 8 KB
  * the crypto bank leaves below its top window: up to DL_MAX entries of
  * a kind, a size and a name, kept in order as they arrive -- directories

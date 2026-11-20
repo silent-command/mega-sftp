@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* Moving files between the server and a drive: the drive chooser, a
  * download to a disk, an upload from one. The FTP client's module over
  * the SFTP calls. Prompts use the info and status rows; the caller

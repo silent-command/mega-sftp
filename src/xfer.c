@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* The FTP client's xfer.c on the SFTP calls: downloads stream through
  * sftp_on_data into the CBM DOS writer, uploads read the disk a block
  * at a time and go out as WRITE requests. One transfer at a time, and

@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* The host harness's machine: the frame counter, far memory, mega-net's
  * sockets, the crypto bank's calls (on the same primitives the bank is
  * built from), and a known-hosts store that trusts on first use in

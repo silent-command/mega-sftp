@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* Bookmarks: SFTPMARKS on the disk the client booted from, the SSH
  * client's SSHMARKS with the directory added. A line "SFTPM1", then
  * five lines per entry: host, port, the method (p or i), user, and the

@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* Hyppo (the MEGA65 hypervisor) services the client uses: naming a file
  * on the SD card, attaching a disk image to a drive, versions and error
  * codes. See the MEGA65 Book, appendix N. */

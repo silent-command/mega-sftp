@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* MEGA65 SFTP client: the SSH client's connection and login, the FTP
  * client's browser on top, and the SFTP protocol between them. Connect,
  * check the host key against KNOWNHOSTS, log in with a password or the

@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* The SFTP layer on the development machine, over the unchanged SSH
  * transport (tests/host/ supplies the machine): a command-line client
  * for checking the protocol against real servers before any of it goes

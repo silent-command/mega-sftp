@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright 2026 Justin Cameron
+# SPDX-License-Identifier: Apache-2.0
 """An SFTP server for testing the MEGA65 client.
 
     python3 tools/sftp_test_server.py [--port 2230] [--root DIR] [--many N]

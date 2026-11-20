@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 ; Hyppo trap from C. The C side fills hyppo_a/x/y/z, calls
 ; m65_hyppo_trap(), and reads hyppo_ra/rx/ry/rz and hyppo_rc (1 = the
 ; carry was set = success). The trap is a write of A to $D640 followed by

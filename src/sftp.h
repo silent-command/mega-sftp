@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* The SFTP protocol, version 3 (draft-ietf-secsh-filexfer-02, which is
  * what OpenSSH speaks), over the SSH session channel's "sftp"
  * subsystem. One request is outstanding at a time and one handle is

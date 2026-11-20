@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* The client: the MEGA65 target's link.ld with a second region,
  * $E000-$FEFF in bank 0 -- RAM once m65_own_vectors has mapped the
  * KERNAL out, below mega-net's vector stub at $FF00 (PLATFORM.md). A

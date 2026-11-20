@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* SFTP version 3 over the session channel (sftp.h). Requests are built
  * in `rq` and sent with ch_send; replies arrive through ch_on_data and
  * are taken apart by a small state machine that reads one field at a
